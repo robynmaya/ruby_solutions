@@ -4,7 +4,7 @@ The return value should be arranged in order from shortest to longest substring.
 =end
 
 def substrings_at_start(saywhat)
-  saywhat.size <= 1 ? [str] : [substrings_at_start(saywhat.chop), str].flatten
+  saywhat.size <= 1 ? [str] : [substrings_at_start(saywhat.chop), saywhat].flatten
 end
 
-#Recursively chopping the last character off and the flatten method turns the multidimensional array into one dimensional array. 
+#Recursively chopping the last character off and the flatten method turns the multidimensional array into one dimensional array.
