@@ -8,7 +8,7 @@ You may assume that words are any sequence of non-blank characters.
 
 
 def word_cap(string)
-  string.split.map{|i| i[0].upcase!+i[1..-1]}
+  string.split.map{|i| i[0].upcase!+i[1..-1]}.join(' ')
 end
 
-word_cap('four score and seven') == ["Four", "Score", "And", "Seven"] #true
+word_cap('four score and seven') == 'Four Score And Seven' #true
