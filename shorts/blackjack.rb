@@ -48,7 +48,7 @@ class Player
     end #end of mapping
 
     if @cards.count("Ace") > 1
-      value.inject(&:+) - 10
+      value.inject(&:+) - (10 * (cards.count("Ace") - 1)) 
     else
       value.inject(&:+)
     end
