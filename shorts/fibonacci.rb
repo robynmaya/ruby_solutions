@@ -10,3 +10,9 @@ def fibonacci(nth)
 
   last
 end
+
+# another method, shorter but less readability 
+
+def fibonacci2(n)
+  (3..n).reduce([1, 1]) { |(a, b), _| [b, a + b] }.last
+end
