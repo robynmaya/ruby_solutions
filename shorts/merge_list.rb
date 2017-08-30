@@ -28,3 +28,21 @@ def merge(arr1, arr2)
   end
   sorted_merge
 end
+
+=begin
+Sort an array of passed in values using merge sort.
+You can assume that this array may contain only one type of data.
+And that data may be either all numbers or all strings.
+
+Merge sort is a recursive sorting algorithm that works by breaking down t
+he array elements into nested sub-arrays, then recombining those nested
+sub-arrays in sorted order.
+
+=end
+
+def merge_sort(arr)
+  return arr if arr.length == 1
+
+  mid = arr.length / 2
+  return merge(merge_sort(arr[0...mid]), merge_sort(arr[mid..-1]))
+end
