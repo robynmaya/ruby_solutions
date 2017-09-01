@@ -1,10 +1,34 @@
-# So what is the difference between Public, Private, Protected?
+=begin
+The difference will be on Visibility and how they are treated in the case of Inheritance :
 
-# example
+Visibility :
 
-class GoodDog
-  DOG_YEARS = 7
+|| Anywhere || Public can be accessed from inside and outside the class.
 
+It is so 'out there in your face, use it whenever you want'
+
+|| Inside the class || Both Private and Protected can only be accessed from inside the class.
+
+The similarity between Protected and Private :
+
+Both can be accessed from outside the class through a public method.
+The differences between Protected and Private are :
+
+Private method can not be called with a receiver (not even with self).
+UNLESS ... calling a PRIVATE SETTER method. If you try to remove the receiver,
+Ruby will create a local variable. Self is a must in this case.
+Protected may or may not use self.
+Protected can access another object's protected method that comes from the same class, Private can not.
+When it comes to Inheritance :
+
+Private methods can only be called on subclasses implicitly
+(simply just the name of the method) but not explicitly (using #self).
+Protected can be called both ways (with or without #self || implicitly or explicitly).
+
+Example with code below :
+=end
+
+class Dog
   attr_accessor :name, :age
 
   def initialize(n, a)
@@ -12,23 +36,26 @@ class GoodDog
     self.age = a
   end
 
-  def public_disclosure
-    "#{self.name} in human years is #{human_years}"
+  def accessing_private
+    "#{self.name} in human years is #{human_years}. This is secret!" # no receiver
   end
 
-  def a_public_method
-    "Will this work? " + self.a_protected_method
+  def accessing_protected
+    "Will this work? " + a_protected_method
   end
 
-  def older_in_cat_years_than(other)
-    age_cat_years > other.age_cat_years # accessing other protected instance from same class
+  def older_than(other) # accesing other object's protected method
+    age_cat_years > other.age_cat_years # accessing other instance's protected method from the same class
+  end
+
+  def boy
+    gender_method("boy") # accessing private setter method
   end
 
   protected
 
   def age_cat_years
     age * 3
-
   end
 
   def a_protected_method
@@ -36,67 +63,3 @@ class GoodDog
   end
 
   private
-
-  def human_years
-    age * DOG_YEARS
-  end
-end
-
-=begin
-Accessibility :
-
-|| Anywhere ||
-
-Public can be accessed from outside the class.
-
->> It is so 'out there in your face, do whatever you want with it'
-
-|| Inside the class ||
-
-Private can only be accessed from inside the class.
-
->> By using a public method that calls that private method (WITHOUT ANY RECEIVER prepended to it,
-such as the object name or even self).
-
->> UNLESS.... calling a PRIVATE SETTER method. If you try to remove the receiver,
-ruby will create a local variable. Self is a must in this case.
-
-So, I'd like to imagine their interaction like between a deaf person with the interpreter.
-They communicate with a sign language. People who can not speak in sign language,
-must ask the interpreter in order to know what the deaf person wants to say.
-Only through the interpreter (public method), user can communicate with the deaf
-person (private method). And, the deaf person does not like to know your name,
-so she does not need #self or object name prepended to the her (the private method.)
-
-UNLESS.... the deaf person is going to SET your death sentence. In that case,
-it has to know who is going to die by prepending #self to it.
-
->> Private can NOT be accessed from outside the class.
-
-|| Anywhere but Outside Too ||
-
-Protected is like Private :
-- Can be accessed from outside the class through a public method ONLY.
-- Can access another object from the same class.
-
-But Protected may or may not use self. Private is more strict,
-it can not be called on any receiver (unless it is a setter method).
-
-Protected is like Public :
-- Can be accessed inside the class with or without self
-
-Bla bla bla... you're confused, are you? Protected sounds similar to Private.
-Subtly, yes they do look similar.
-
-But there is BIG DIFFERENCE.
-It is on how they are treated on INHERITENCE.
-Private methods can not be passed on to subclasses, but Protected can.
-
-Boom shakalaka!!! You have mastered the understanding between P,P,P methods!!!
-Why don't we just start calling all of them "P", so everyone who is trying to learn
-will be even more confused. Jk.
-
-I just hate when tutorials out there are not really honest on their limited understanding.
-They gave a bunch of theories but not enough "why's". Maybe, they hoped that the less explanation,
-the smarter and more sophisticated they seem :/
-=end
