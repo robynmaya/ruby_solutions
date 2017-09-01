@@ -1,59 +1,47 @@
-=begin
+class Node
+  attr_accessor :val, :next
 
-Runtime Complexity
-Linear, O(n).
-
-As we can reverse the linked list in a single pass.
-
-Memory Complexity
-Constant, O(1).
-
-=end
-
-def reverse_iterative(head)
-  # no need to reverse if head is nil
-  # or there is only 1 node.
-  if (!head || !head.next)
-    return head
+  def initialize(val, next_node)
+      @val = val
+      @next = next_node
   end
-
-  current_head = head.next
-  reversed_head = head
-  reversed_head.next = nil
-
-  while (current_head)
-    temp = current_head
-    current_head = current_head.next
-
-    temp.next = reversed_head
-    reversed_head = temp
-  end
-
-  return reversed_head
 end
 
-# or ...
-=begin
+class LinkedList
 
-Runtime Complexity
-Linear, O(n).
-
-Memory Complexity
-Linear, O(n).
-
-=end
-
-def reverse_recursive(head)
-  # no need to reverse if head is nil
-  # or there is only 1 node.
-  if (!head || !head.next)
-    return head
+  def initialize(val)
+    @head = Node.new(val, nil)
   end
 
-  reversed_head = reverse_recursive(
-  head.next)
+  def add(val)
+    current = @head
+    while current.next != nil
+      current = current.next
+    end
+    current.next = Node.new(val, nil)
+  end
 
-  head.next.next = head
-  head.next = nil
-  return reversed_head
+  def delete(val)
+    current.next = @head
+    if current.val = val
+      @head = current.next
+    else
+      while (current.next != nil) && (current.next.val != val)
+        current = current.next
+      end
+      unless current.next == nil
+        current.next = current.next.next
+      end
+    end
+  end
+
+  def return_list
+    elements = []
+    current = @head
+    while current.next != nil
+      elements << current
+      current = current.next
+    end
+    elements << current
+  end
 end
