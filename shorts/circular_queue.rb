@@ -38,6 +38,6 @@ class CircularQueue
   private
 
   def increment(position)
-    (position + 1) % @buffer.size
+    (position + 1) % @buffer.size  # to return back to zero when the array is full
   end
 end
