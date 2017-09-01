@@ -102,6 +102,8 @@ p jackson.eat_more_than(blake) # true -> "Jackson eats more than Blake"
 
 # Below, accessing private setter method through a public method.
 p blake.boy # Blake is a boy
+
+=begin
 Let's talk about Inheritance
 In Ruby, the inheritance hierarchy does not really enter into the equation. It is rather all about 'the receiver'.
 
@@ -110,6 +112,7 @@ In Ruby, the inheritance hierarchy does not really enter into the equation. It i
 – Protected can be called both ways (with or without #self || implicitly or explicitly).
 
 Example with code below :
+=end
 
 class Puppy < Dog
 
