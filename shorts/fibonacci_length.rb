@@ -8,7 +8,11 @@ Write a method that calculates and returns the index of the first Fibonacci numb
 =end
 
 def find_fibonacci_index_by_length(len, index=1)
+  # -> operator is called stabby lambda or lambda literal
   fib = ->(x){ x < 2 ? x : fib[x-1] + fib[x-2] }
+  #the -> is the same like writing a lambda like below
+  fib_lamb  = lambda { |x| x < 2 ? x : fib[x-1] + fib[x-2] }
+
 
   loop do
     break if fib.call(index).to_s.length >= len
