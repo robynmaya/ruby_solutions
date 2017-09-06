@@ -1,4 +1,16 @@
 =begin
+A stack is a data structure in which objects are inserted and removed according
+to the LIFO(Last In First Out) principle. An item is added at the top of the stack
+and removed from the top as well. push means to insert an item at the top of the stack
+and pop means to remove an item from the top of the stack.
+
+A queue is a data structure in which objects are inserted and removed according
+to the FIFO(First In First Out) principle. An item is added at the back of the queue
+and removed from the front. enqueue means to insert an item at the back of the queue
+and dequeue means to remove an item from the front of the queue.
+
+Solution #1
+
 Runtime Complexity
 push(): Constant, O(1).
 
